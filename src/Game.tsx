@@ -16,10 +16,10 @@ export const Game: React.FC<Props> = ({roomInfo, socket, icons}) => {
                     roomInfo.players.map((player, idx) => {
                         if (player.id === socket.id) return <></>;
                         return(
-                            <Link to={`/${idx}`}>
+                            <Link to={`/${idx}`} className="Icon-Btn">
                                 <div className="PlayerIcon">
                                     <img src={icons[idx%icons.length]} alt={`${player.nick}'s Icon`} />
-                                    <h3>Message {player.nick}</h3>
+                                    <h3 className="Icon-Txt">Message {player.nick}</h3>
                                 </div>
                             </Link>
                         )
