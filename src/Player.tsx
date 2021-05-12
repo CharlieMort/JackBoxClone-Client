@@ -40,8 +40,10 @@ export const Player: React.FC<Props> = ({roomInfo, player, socket, roomCode}) =>
                     return <></>
                 })
             }
-            <input className="Msg-Box" type="text" placeholder="Enter Msg...." value={msg} onChange={OnChange} />
-            <input className="Send" type="button" value="Send" onClick={Submit} />
+            <div className="BottomBar">
+                <input className="Msg-Box" type="text" placeholder="Enter Msg...." value={msg} onChange={OnChange} />
+                <input className="Send" type="button" value="Send" onClick={Submit} />
+            </div>
             <div ref={el => el?.scrollIntoView()} />
         </div>
     );

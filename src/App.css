@@ -50,7 +50,7 @@ body {
 
 .Messages {
     display: flex;
-    width: 50vw;
+    width: 75vw;
     height: 75vh;
     background-color: #999;
     justify-content: space-between;
@@ -102,4 +102,18 @@ body {
     border: 0.2rem solid black;
     padding: 0.5rem;
     border-radius: 10rem;
+}
+
+.Messages-Wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.BottomBar {
+    background-color: black;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    font-size: 10rem;
 }
