@@ -1,38 +1,79 @@
-.App {
-  text-align: center;
+body {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Conversation {
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Msg {
+    background-color: #ad1c1c;
+    padding: 0rem 1rem;
+    width: fit-content;
+    margin: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.mine {
+    background-color: green;
+    margin-left: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.theirs {
+    background-color: blue;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Lobby {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Players {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.PlayerIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.Messages {
+    display: flex;
+    width: 50vw;
+    height: 75vh;
+    background-color: #999;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Top-Banner {
+    width: 100%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 5.75rem;
+}
+
+.Msg-Icon {
+    width: 5rem;
+    padding: 0.75rem;
+}
+
+.Player {
+    width: 100%;
+    max-height: 69.25rem;
+    overflow-y: scroll;
 }
