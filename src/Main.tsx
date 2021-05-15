@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Game } from "./Game";
 import { IRoom } from "./Interfaces";
@@ -20,9 +20,27 @@ interface Props {
 
 export const Main: React.FC<Props> = ({roomInfo, socket}) => {
     const [icons] = useState([alien, bear, brain, bruh, grimreaper, vampire]);
+    const [countdown, setCountdown] = useState(120);
+    const [countdownInterval, setCountdownInterval] = useState<null | NodeJS.Timeout>(null);
+
+    useEffect(() => {
+        if (roomInfo.stage === "game" && countdownInterval === null) {
+            setCountdownInterval(setInterval(() => {
+                console.log("aight");
+                setCountdown(prevCount => prevCount - 1);
+            }, 1000))
+        }
+        if (roomInfo.stage === "showcase" && countdownInterval !== null) {
+            clearInterval(countdownInterval);
+            setCountdownInterval(null);
+        }
+    }, [roomInfo]);
 
     return(
         <div>
+            {
+                countdownInterval ? <h1>Countdown: {countdown}s Left!!</h1> : <></>
+            }
             <Router>
                 <Switch>
                     <Route path="/" exact>

@@ -9,11 +9,8 @@ interface Props {
 }
 
 export const Game: React.FC<Props> = ({roomInfo, socket, icons}) => {
-    const [countdown, setCountdown] = useState(0);
-
     return(
         <div>
-            <h1>Countdown: {roomInfo.countdown}s Left!!</h1>
             {
                 roomInfo.stage === "game" &&
                 <div className="Players">
@@ -33,11 +30,17 @@ export const Game: React.FC<Props> = ({roomInfo, socket, icons}) => {
                 </div>
             }
             {
-                roomInfo.stage === "showcase" &&
-                <div>
-                    <h1>Showcase</h1>
-                    <h2>{roomInfo.showcaseConvo.recipiantsNicks[0]} VS {roomInfo.showcaseConvo.recipiantsNicks[1]}</h2>
-                </div>
+                roomInfo.stage === "showcase"
+                ?
+                    roomInfo.showcaseConvo !== undefined
+                    ? <div>
+                        <h1>Showcase</h1>
+                        <h2>{roomInfo.showcaseConvo.recipiantsNicks[0]} VS {roomInfo.showcaseConvo.recipiantsNicks[1]}</h2>
+                    </div>
+                    : <div>
+                        <h1>Welp i guess no one sent any msgs kinda weirdchamp if you ask me</h1>
+                    </div>
+                : <></>
             }
         </div>
     )

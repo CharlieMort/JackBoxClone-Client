@@ -9,17 +9,8 @@ interface Props {
     roomCode: string,
 }
 
-function usePrevious(value: string) {
-    const ref = useRef("");
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-}
-
 export const Player: React.FC<Props> = ({roomInfo, player, socket, roomCode}) => {
     const [msg, setMsg] = useState<string>("");
-    const prevMsg = usePrevious(msg);
     const [msgRef] = useState<HTMLElement | null>(null);
 
     const scrollToBottom = () => {
@@ -37,7 +28,6 @@ export const Player: React.FC<Props> = ({roomInfo, player, socket, roomCode}) =>
     }
 
     useEffect(() => {
-        setMsg(prevMsg);
         scrollToBottom()
     }, [roomInfo]);
 
