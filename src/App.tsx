@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Curious Dating</h1>
+      <h1>Liam uwu</h1> 
       {
         roomInfo 
         ? <Main roomInfo={roomInfo} socket={socket} />

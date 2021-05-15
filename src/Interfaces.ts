@@ -12,6 +12,7 @@ export interface IMsg {
 
 export interface IConvo {
     recipiants: string[],
+    recipiantsNicks: string[],
     msgs: IMsg[]
 }
 
@@ -20,5 +21,11 @@ export interface IRoom {
     code: string,
     slotsLeft: number,
     conversations: IConvo[],
-    started: boolean
+    started: boolean,
+    round: number,
+    maxRounds: number,
+    stage: string,
+    countdownTimer: any,
+    countdown: number,
+    showcaseConvo: IConvo
 }
