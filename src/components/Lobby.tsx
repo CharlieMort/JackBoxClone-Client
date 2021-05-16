@@ -1,5 +1,5 @@
 import React from "react";
-import { IRoom } from "./Interfaces";
+import { IRoom } from "../Interfaces";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -12,11 +12,6 @@ export const Lobby: React.FC<Props> = ({roomInfo, icons, socket}) => {
     return(
         <div className="Lobby">
             <h1><b><u>Players</u></b></h1>
-            {roomInfo.players.map((player) => {
-                if (player.id === socket.id && player.isHost) return <button onClick={() => socket.emit("StartGame", roomInfo.code)}>Start Game</button>
-                return <></>
-            })
-            }
             <div className="Players">
                 {
                     roomInfo.players.map((player, idx) => {

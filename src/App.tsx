@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import socketIO from "socket.io-client";
-import { Nickname } from "./Nickname";
-import { Rooms } from './Rooms';
 import { IRoom } from "./Interfaces";
-import { Main } from "./Main";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router";
+import { HostScreen } from './components/HostScreen';
+import { JoinOptions } from './components/JoinOptions';
+import { PlayerScreen } from './components/PlayerScreen';
+import alien from "./sprites/alien.png";
+import bear from "./sprites/bear.png";
+import brain from "./sprites/brain.png";
+import bruh from "./sprites/bruh.png";
+import grimreaper from "./sprites/grimreaper.png";
+import vampire from "./sprites/vampire.png";
 
 const ENDPOINT: string = "http://localhost:5000";
 const socket = socketIO(ENDPOINT);
 
-function App() {
-  const [nicked, setNicked] = useState<boolean>(false);
-  const [roomInfo, setRoomInfo] = useState<IRoom | null>();
+const App: React.FC = () => {
+  const [icons] = useState([alien, bear, brain, bruh, grimreaper, vampire]);
+  const [roomInfo, setRoomInfo] = useState<IRoom>();
 
   useEffect(() => {
     socket.on("RoomInfo", (data: IRoom) => {
@@ -22,13 +30,24 @@ function App() {
   return (
     <div className="App">
       <h1>Liam uwu</h1> 
-      {
-        roomInfo 
-        ? <Main roomInfo={roomInfo} socket={socket} />
-        : nicked
-          ? <Rooms socket={socket} />
-          : <Nickname socket={socket} setNicked={setNicked} />
-      }
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <JoinOptions socket={socket} roomInfo={roomInfo} />
+          </Route>
+          <Route path="/game">
+            <PlayerScreen socket={socket} roomInfo={roomInfo} icons={icons} />
+          </Route>
+          {
+            !roomInfo && <Redirect to="/" />
+          }
+          <Route path="/host">
+            {
+              roomInfo && <HostScreen socket={socket} roomInfo={roomInfo} icons={icons} />
+            }
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
