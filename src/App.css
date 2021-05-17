@@ -133,3 +133,9 @@ body {
     background: black;
     color: white;
 }
+
+.Showcase-Icons-Wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}

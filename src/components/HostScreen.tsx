@@ -2,6 +2,8 @@ import React from "react";
 import { IRoom } from "../Interfaces";
 import { Lobby } from "./Lobby";
 import { Countdown } from "./Countdown";
+import { HostGame } from "./HostGame";
+import { Showcase } from "./Showcase";
 
 interface Props {
     socket: SocketIOClient.Socket,
@@ -15,14 +17,11 @@ export const HostScreen: React.FC<Props> = ({socket, roomInfo, icons}) => {
             <h1>Host Screen</h1>
             <h2>Room Code: {roomInfo.code}</h2>
             {
-                roomInfo.started 
-                ? <Countdown startTime={120} roomInfo={roomInfo} />
-                :
-                    roomInfo.players.length >= 2
-                    ? <button onClick={() => socket.emit("StartGame", roomInfo.code)}>Start Game?</button>
-                    : <h3>Not Enough Players To Start</h3>
+                (roomInfo.stage === "game" || roomInfo.stage === "lobby") && <HostGame icons={icons} roomInfo={roomInfo} socket={socket} />
             }
-            <Lobby roomInfo={roomInfo} icons={icons} socket={socket} />
+            {
+                roomInfo.stage === "showcase" && <Showcase icons={icons} roomInfo={roomInfo} socket={socket} />
+            }
         </div>
     )
 }
