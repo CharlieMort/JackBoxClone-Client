@@ -27,5 +27,6 @@ export interface IRoom {
     stage: string,
     countdownTimer: any,
     countdown: number,
-    showcaseConvo: IConvo
+    showcaseConvo: IConvo,
+    matches: {}
 }
