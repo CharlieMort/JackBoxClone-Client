@@ -12,7 +12,8 @@ export const Nickname: React.FC<Props> = ({socket, setNicked}) => {
         setNick(e.target.value);
     }
 
-    const Submit = () => {
+    const Submit = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         socket.emit("CreateNickname", nick);
         setNicked(true);
     }
@@ -20,8 +21,10 @@ export const Nickname: React.FC<Props> = ({socket, setNicked}) => {
     return(
         <div>
             <h3>Enter Nickname</h3>
-            <input type="text" placeholder="Enter Nickname Here..." onChange={OnChange} value={nick} />
-            <input type="button" value="Submit" onClick={Submit} />
+            <form onSubmit={Submit}>
+                <input type="text" placeholder="Enter Nickname Here..." onChange={OnChange} value={nick} autoFocus={true} />
+                <input type="button" value="submit" />
+            </form>
         </div>
     )
 }

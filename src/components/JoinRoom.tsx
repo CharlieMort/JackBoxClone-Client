@@ -11,14 +11,17 @@ export const JoinRoom: React.FC<Props> = ({socket}) => {
         setRoomCode(e.target.value);
     }
 
-    const JoinRoom = () => {
+    const JoinRoom = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         socket.emit("JoinRoom", roomCode);
     }
 
     return(
         <div>
-            <input type="text" placeholder="Enter Room Code..." onChange={onChange} value={roomCode} />
-            <input type="button" value="Join Room" onClick={JoinRoom} />
+            <form onSubmit={JoinRoom}>
+                <input type="text" placeholder="Enter Room Code..." onChange={onChange} value={roomCode} autoFocus={true} />
+                <input type="submit" value="Join Room" />
+            </form>
         </div>
     )
 }

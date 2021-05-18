@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IRoom } from "../Interfaces";
 
 interface Props {
@@ -8,6 +8,21 @@ interface Props {
 }
 
 export const Match: React.FC<Props> = ({roomInfo, socket, icons}) => {
+    const [matched, setMatched] = useState(false);
+
+    const Choose = (idx: number) => {
+        socket.emit("PickMatch", idx, roomInfo.code);
+        setMatched(true);
+    }
+
+    if (matched) {
+        return(
+            <div>
+                <h1>Great You've Picked Your Match. Will They Match Back??</h1>
+            </div>
+        )
+    }
+
     return(
         <div>
             <h1>Pick Someone To Match With</h1>
@@ -16,7 +31,7 @@ export const Match: React.FC<Props> = ({roomInfo, socket, icons}) => {
                     roomInfo.players.map((player, idx) => {
                         if (player.id === socket.id) return <></>;
                         return(
-                            <button className="Icon-Btn">
+                            <button className="Icon-Btn" onClick={() => Choose(idx)}>
                                 <div className="PlayerIcon">
                                     <img src={icons[idx%icons.length]} alt={`${player.nick}'s Icon`} />
                                     <h3 className="Icon-Txt">Choose {player.nick}</h3>

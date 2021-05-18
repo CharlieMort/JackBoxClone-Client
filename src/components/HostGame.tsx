@@ -14,7 +14,7 @@ export const HostGame: React.FC<Props> = ({roomInfo, socket, icons}) => {
         <div>
             {
                 roomInfo.started 
-                ? <Countdown startTime={20} roomInfo={roomInfo} />
+                ? <Countdown startTime={20} roomInfo={roomInfo} stage="game" nextStage="matches" />
                 :
                     roomInfo.players.length >= 2
                     ? <button onClick={() => socket.emit("StartGame", roomInfo.code)}>Start Game?</button>
