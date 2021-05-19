@@ -25,7 +25,6 @@ export const Game: React.FC<Props> = ({roomInfo, socket, icons}) => {
                 newAlerts.push(alerts[i] ? true : false);
             }
             newAlerts[senderIdx] = true;
-            console.log(newAlerts);
             setAlerts(newAlerts);
         })
     },[])

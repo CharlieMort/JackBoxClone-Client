@@ -7,6 +7,7 @@ import { Showcase } from "./Showcase";
 import { MatchScreen } from "./MatchScreen";
 import { Matches } from "./Matches";
 import { Leaderboard } from "./Leaderboard";
+import { NextRoundCard } from "./NextRoundCard";
 
 interface Props {
     socket: SocketIOClient.Socket,
@@ -35,6 +36,9 @@ export const HostScreen: React.FC<Props> = ({socket, roomInfo, icons}) => {
             }
             {
                 roomInfo.stage === "leaderboard" && <Leaderboard roomInfo={roomInfo} socket={socket} />
+            }
+            {
+                roomInfo.stage === "show_round" && <NextRoundCard roomInfo={roomInfo} socket={socket} />
             }
         </div>
     )

@@ -22,26 +22,27 @@ export const ShowcaseMsgs: React.FC<Props> = ({roomInfo, socket}) => {
     }, []);
 
     useEffect(() => {
-        console.log(`IDX-${msgIdx} COUNT-${roomInfo.showcaseConvo.msgs.length}`)
         if (msgIdx > roomInfo.showcaseConvo.msgs.length) {
-            socket.emit("ToMatchShowcase", roomInfo.code);
             if (msgInterval !== null) clearInterval(msgInterval);
         }
     }, [msgIdx])
 
     return(
-        <div className="Conversation">
-            {
-                roomInfo.showcaseConvo.msgs.slice(0, msgIdx).map((msg) => {
-                    return(
-                        <div className={`Msg ${roomInfo.showcaseConvo.recipiants[0] === msg.sender ? "mine" : "theirs"}`} key={v4()}>
-                            <h2 className="Msg-txt">{msg.txt}</h2>
-                            <h4 className="Msg-sender">From {msg.senderNick}</h4>
-                        </div>
-                    )
-                })
-            }
-            <div ref={el => el?.scrollIntoView()} />
+        <div>
+            <button onClick={() => socket.emit("ToMatchShowcase", roomInfo.code)}>Matches</button>
+            <div className="Conversation">
+                {
+                    roomInfo.showcaseConvo.msgs.slice(0, msgIdx).map((msg) => {
+                        return(
+                            <div className={`Msg ${roomInfo.showcaseConvo.recipiants[0] === msg.sender ? "mine" : "theirs"}`} key={v4()}>
+                                <h2 className="Msg-txt">{msg.txt}</h2>
+                                <h4 className="Msg-sender">From {msg.senderNick}</h4>
+                            </div>
+                        )
+                    })
+                }
+                <div ref={el => el?.scrollIntoView()} />
+            </div>
         </div>
     )
 }
