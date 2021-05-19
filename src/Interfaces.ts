@@ -1,7 +1,9 @@
 export interface IPlayer {
     id: string,
     nick: string,
-    isHost: boolean
+    isHost: boolean,
+    score: number,
+    idx: number
 }
 
 export interface IMsg {
@@ -28,5 +30,17 @@ export interface IRoom {
     countdownTimer: any,
     countdown: number,
     showcaseConvo: IConvo,
-    matches: {}
+    matches: {
+        [key: string]: {
+            id: string,
+            nick: string,
+            idx: number
+        }
+    },
+    matchOutcomes: [{
+        players: IPlayer[],
+        outcome: string
+    }],
+    leaderBoard: IPlayer[],
+    roundNum: number
 }

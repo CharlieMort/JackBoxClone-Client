@@ -6,7 +6,8 @@ import { IRoom } from "../Interfaces";
 import { JoinRoom } from "./JoinRoom";
 import { Nickname } from "./Nickname";
 import { MsgWindow } from "./MsgWindow";
-import { Match } from "./Match";
+import { Matches } from "./Matches";
+import { PickMatch } from "./PickMatch";
 
 interface Props {
     socket: SocketIOClient.Socket,
@@ -30,8 +31,10 @@ export const PlayerScreen: React.FC<Props> = ({socket, roomInfo, icons}) => {
                                 ? roomInfo.stage === "game" 
                                     ? <Game roomInfo={roomInfo} socket={socket} icons={icons} />
                                     : roomInfo.stage === "matches"
-                                        ? <Match icons={icons} roomInfo={roomInfo} socket={socket} />
-                                        : <h1>Look at host screen... Im gonna leek your dms</h1>
+                                        ? <PickMatch icons={icons} roomInfo={roomInfo} socket={socket} />
+                                        : roomInfo.stage === "match_showcase"
+                                            ? <h1>Did Your Match Pick You Back???</h1>
+                                            : <h1>Look at host screen... Im gonna leek your dms</h1>
                                 : <h1>You Joined But The Game Hasnt Started Yet</h1>
                         }
                     </Route>

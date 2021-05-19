@@ -23,6 +23,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     socket.on("RoomInfo", (data: IRoom) => {
+      console.log(data);
       setRoomInfo(data);
     })
   },[])

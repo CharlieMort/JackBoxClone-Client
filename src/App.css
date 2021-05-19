@@ -139,3 +139,9 @@ body {
     display: flex;
     justify-content: space-around;
 }
+
+.Match {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

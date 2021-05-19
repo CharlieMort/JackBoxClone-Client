@@ -42,7 +42,7 @@ export const Showcase: React.FC<Props> = ({roomInfo, socket, icons}) => {
                     <h3>{roomInfo.showcaseConvo.recipiantsNicks[1]}</h3>
                 </div>
             </div>
-            <ShowcaseMsgs roomInfo={roomInfo} />
+            <ShowcaseMsgs roomInfo={roomInfo} socket={socket} />
         </div>
     )
 }

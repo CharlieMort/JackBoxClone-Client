@@ -7,7 +7,7 @@ interface Props {
     icons: string[]
 }
 
-export const Match: React.FC<Props> = ({roomInfo, socket, icons}) => {
+export const PickMatch: React.FC<Props> = ({roomInfo, socket, icons}) => {
     const [matched, setMatched] = useState(false);
 
     const Choose = (idx: number) => {

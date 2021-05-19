@@ -5,6 +5,8 @@ import { Countdown } from "./Countdown";
 import { HostGame } from "./HostGame";
 import { Showcase } from "./Showcase";
 import { MatchScreen } from "./MatchScreen";
+import { Matches } from "./Matches";
+import { Leaderboard } from "./Leaderboard";
 
 interface Props {
     socket: SocketIOClient.Socket,
@@ -13,6 +15,8 @@ interface Props {
 }
 
 export const HostScreen: React.FC<Props> = ({socket, roomInfo, icons}) => {
+    
+    console.log(roomInfo.stage);
     return(
         <div>
             <h1>Host Screen</h1>
@@ -25,6 +29,12 @@ export const HostScreen: React.FC<Props> = ({socket, roomInfo, icons}) => {
             }
             {
                 roomInfo.stage === "showcase" && <Showcase icons={icons} roomInfo={roomInfo} socket={socket} />
+            }
+            {
+                roomInfo.stage === "match_showcase" && <Matches icons={icons} roomInfo={roomInfo} socket={socket} />
+            }
+            {
+                roomInfo.stage === "leaderboard" && <Leaderboard roomInfo={roomInfo} socket={socket} />
             }
         </div>
     )
