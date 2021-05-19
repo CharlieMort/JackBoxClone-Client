@@ -15,7 +15,7 @@ import grimreaper from "./sprites/grimreaper.png";
 import vampire from "./sprites/vampire.png";
 
 const ENDPOINT: string = "http://localhost:5000";
-const socket = socketIO(ENDPOINT);
+const socket = socketIO(ENDPOINT); // Remember to remove when buidling
 
 const App: React.FC = () => {
   const [icons] = useState([alien, bear, brain, bruh, grimreaper, vampire]);
